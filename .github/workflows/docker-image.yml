@@ -52,8 +52,11 @@ jobs:
 
       # Step 7: Create a new Git tag and push it
       - name: Create and push Git tag
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git tag ${{ env.new_tag }}
-          git push origin ${{ env.new_tag }}
+          git push https://${GH_TOKEN}@github.com/${{ github.repository }} ${{ env.new_tag }}
+
