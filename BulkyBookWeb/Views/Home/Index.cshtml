@@ -9,6 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .clickable-card {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+            .clickable-card:hover {
+                text-decoration: none;
+                color: blue;
+            }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -40,12 +52,12 @@
                     <div class="card-header text-center">
                         <h2>Current Project</h2>
                     </div>
-                    <div class="card-body text-center">
-                        <a href="https://github.com/prince-espiot/Smart_Aws_Infra" target="_blank">
+                    <a href="https://github.com/prince-espiot/Smart_Aws_Infra" target="_blank" class="clickable-card">
+                        <div class="card-body text-center">
                             <img src="~/images/smartinfra.gif" alt="Current Project" class="img-fluid rounded" style="max-width: 100%; height: auto;" />
-                        </a>
-                        <p class="font-weight-bold mt-3">AWS automated deployment of a Kubernetes cluster</p>
-                    </div>
+                            <p class="font-weight-bold mt-3">AWS automated deployment of a Kubernetes cluster</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
