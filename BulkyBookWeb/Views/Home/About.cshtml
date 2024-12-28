@@ -9,14 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Author</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .text-black {
+            color: black !important;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h1>@ViewData["Title"]</h1>
+                <h1 class="text-black">@ViewData["Title"]</h1>
             </div>
-            <div class="card-body">
+            <div class="card-body text-black">
                 <div class="row">
                     <div class="col-md-8">
                         <h2>Prince Okumo</h2>
