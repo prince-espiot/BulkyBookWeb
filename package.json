@@ -1,0 +1,15 @@
+{
+  "name": "bulkybook",
+  "version": "1.0.0",
+  "description": "A web Application implemented using ASP .Net Core framework in C#",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.17.0"
+  }
+}

@@ -8,3 +8,9 @@
 # Ignore build output
 bin/
 obj/
+node_modules/
+
+# ignore npm-debug.log
+npm-debug.log
+
+# ignore javascript files
