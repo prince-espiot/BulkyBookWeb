@@ -60,3 +60,16 @@ jobs:
           git tag ${{ env.new_tag }}
           git push https://${GH_TOKEN}@github.com/${{ github.repository }} ${{ env.new_tag }}
 
+      # run cypress e2e tests in the cypress e2e folder
+      # - name: Run Cypress E2E tests
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     build: npm run build
+      #     start: npm run start
+      #     wait-on: 'http://localhost:5000'
+      #     command-prefix: 'npm run'
+      #     record: true
+      #     recordKey: /*{{ secrets.CYPRESS_RECORD_KEY }}*/
+      #     parallel: true
+      #     group: 'Docker Image CI'
+      #     spec: 'cypress/e2e/*.spec.js'

@@ -18,5 +18,130 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Google Fonts', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    margin-bottom: 60px;
 }
+
+h1 {
+    font-family: 'Google Fonts', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    font-style: italic; /* Apply italic style */
+    color: #007bff;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 123, 255, 0.6); /* Add a subtle text shadow for depth */
+    margin-top: 2rem;
+}
+
+p.lead {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-align: center;
+    color: #555;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* Ensure the row uses flexbox for horizontal alignment */
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Styling the cards */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(240, 240, 240, 0.8));
+    flex: 1 1 calc(50% - 1.5rem); /* Each card takes up 50% of the row minus the gap */
+    
+}
+
+    /* Add hover effect for the cards */
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+    }
+
+/* Card header styles */
+.card-header {
+    background-color: #6c757d;
+    color: black;
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    border-radius: 12px 12px 0 0;
+    font-style: italic
+}
+
+/* Card body styles */
+.card-body {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    color: #333;
+}
+
+    /* Image styles */
+    .card-body img {
+        max-width: 90%;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+        .card-body img:hover {
+            transform: scale(1.05);
+        }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Stack cards vertically on small screens */
+    .row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .card {
+        flex: 1 1 100%; /* Each card takes up 100% on smaller screens */
+    }
+}
+
+/* Styling the headers */
+.card-header h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Additional text styling */
+.card-body p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Make the anchor clickable card more interactive */
+.clickable-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+    /* Hover effect for the clickable card */
+    .clickable-card:hover .card {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
