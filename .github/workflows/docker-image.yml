@@ -2,64 +2,61 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/myweb
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Check out the code from the repository
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      # Step 1: Check out the code from the repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    # Step 2: Retrieve the current version from the repository
-    - name: Get Current Version
-      id: current_version
-      run: |
-        if git describe --tags --abbrev=0 > /dev/null 2>&1; then
-          echo "current=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
-        else
-          echo "current=v0.0.0" >> $GITHUB_ENV
-        fi
+      # Step 2: Retrieve the latest tag
+      - name: Get the latest tag
+        id: get_tag
+        run: |
+          git fetch --tags
+          TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo "current=${TAG:-v0.0.0}" >> $GITHUB_ENV
 
-    # Step 3: Increment the version (patch version in this case)
-    - name: Increment Version
-      id: increment_version
-      run: |
-        IFS='.' read -r -a parts <<< "${{ env.current#v }}"
-        major=${parts[0]}
-        minor=${parts[1]}
-        patch=${parts[2]}
-        patch=$((patch + 1))
-        new_version="v${major}.${minor}.${patch}"
-        echo "new_version=${new_version}" >> $GITHUB_ENV
-      env:
-        current: ${{ env.current }}
+      # Step 3: Increment the version
+      - name: Increment version
+        id: increment_tag
+        run: |
+          IFS='.' read -r major minor patch <<< "${current#v}"
+          patch=$((patch + 1))
+          echo "new_tag=v${major}.${minor}.${patch}" >> $GITHUB_ENV
+        env:
+          current: ${{ env.current }}
 
-    # Step 4: Tag the new version
-    - name: Create Git Tag
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        git tag ${{ env.new_version }}
-        git push origin ${{ env.new_version }}
+      # Step 4: Log in to Docker Hub
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-    # Step 5: Log in to Docker Hub
-    - name: Log in to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      # Step 5: Build the Docker image with the new tag
+      - name: Build Docker Image
+        run: docker build ./BulkyBookWeb --file ./BulkyBookWeb/Dockerfile --tag ${{ env.IMAGE_NAME }}:${{ env.new_tag }}
 
-    # Step 6: Build the Docker image with the semantic version tag
-    - name: Build Docker Image
-      run: docker build ./BulkyBookWeb \
-        --file ./BulkyBookWeb/Dockerfile \
-        --tag ${{ secrets.DOCKER_USERNAME }}/myweb:latest \
-        --tag ${{ secrets.DOCKER_USERNAME }}/myweb:${{ env.new_version }}
+      # Step 6: Push the Docker image to Docker Hub
+      - name: Push Docker Image
+        run: docker push ${{ env.IMAGE_NAME }}:${{ env.new_tag }}
 
-    # Step 7: Push the Docker image to Docker Hub
-    - name: Push Docker Images
-      run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/myweb:latest
-        docker push ${{ secrets.DOCKER_USERNAME }}/myweb:${{ env.new_version }}
+      # Step 7: Create a new Git tag and push it
+      - name: Create and push Git tag
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git tag ${{ env.new_tag }}
+          git push https://${GH_TOKEN}@github.com/${{ github.repository }} ${{ env.new_tag }}
+
