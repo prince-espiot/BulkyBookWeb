@@ -31,7 +31,7 @@ h1 {
     font-size: 3rem;
     font-weight: 700;
     font-style: italic; /* Apply italic style */
-    color: #007bff;
+    color: #0d0302;
     text-align: center;
     text-shadow: 2px 2px 5px rgba(0, 123, 255, 0.6); /* Add a subtle text shadow for depth */
     margin-top: 2rem;
@@ -41,7 +41,7 @@ p.lead {
     font-size: 1.2rem;
     font-weight: 300;
     text-align: center;
-    color: #555;
+    color: #0d0302;
 }
 
 .text-center {
@@ -117,6 +117,13 @@ p.lead {
         flex: 1 1 100%; /* Each card takes up 100% on smaller screens */
     }
 }
+@media (min-width: 992px) {
+    .navbar .search-form {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+}
 
 /* Styling the headers */
 .card-header h2 {
@@ -145,3 +152,32 @@ p.lead {
         transform: translateY(-5px);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     }
+
+
+.navbar {
+            background-color: #343a40;
+            
+        }
+
+        .navbar-brand, .nav-link, .footer a {
+            color: #ffffff !important;
+        }
+
+            .navbar-brand:hover, .nav-link:hover, .footer a:hover {
+                color: #2464f0 !important;
+            }
+
+        .footer {
+            background-color: #343a40;
+            color: #adb5bd;
+            padding: 1rem 0;
+        }
+
+            .footer a {
+                color: #2464f0;
+            }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
