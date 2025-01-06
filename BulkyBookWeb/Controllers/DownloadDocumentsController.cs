@@ -7,6 +7,12 @@ namespace BulkyBookWeb.Controllers
         public IActionResult DownloadPdf()
         {
 
+            
+            return View();
+        }
+
+        public IActionResult ClickableDownloadCV()
+        {
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Documents","Prince Okumo devops.pdf");
             if (!System.IO.File.Exists(filePath))
             {
@@ -15,7 +21,6 @@ namespace BulkyBookWeb.Controllers
                 var fileBytes = System.IO.File.ReadAllBytes(filePath);
                 return File(fileBytes, "application/pdf", "Prince Okumo devops.pdf");
             }
-            
         }
     }
 }

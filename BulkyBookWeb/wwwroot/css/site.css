@@ -48,9 +48,7 @@ p.lead {
     text-align: center;
 }
 
-.mb-4 {
-    margin-bottom: 2rem;
-}
+
 
 /* Ensure the row uses flexbox for horizontal alignment */
 .row {
