@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var showCategoryLink = false; // Change this to true to show the link.
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,7 +13,7 @@
     <link rel="stylesheet" href="~/BulkyBookWeb.styles.css" asp-append-version="true" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    
+
 </head>
 <body>
     <header>
@@ -28,24 +31,29 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                        @if (showCategoryLink)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
                         </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="DownloadDocuments" asp-action="DownloadPdf">Download CV</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="https://github.com/prince-espiot/Full-Terraform-Jenskins-Deploying" target="_blank">Jenkins Deployment</a>
+                                </li>
+                                <li><a class="dropdown-item" href="https://github.com/prince-espiot/EC2-to-Domain-" target="_blank">EC2 domain</a></li>
+                                <li><a class="dropdown-item" href="https://github.com/prince-espiot/Azure-Infra" target="_blank">Azure Infra</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                <li><a class="dropdown-item" href="https://github.com/prince-espiot/Selftest-API" target="_blank">Self test API</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                     <form class="d-flex search-form">

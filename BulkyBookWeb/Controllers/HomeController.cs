@@ -15,6 +15,7 @@ namespace BulkyBookWeb.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Title"] = "Welcome to PrinceApp";
             return View();
         }
 
