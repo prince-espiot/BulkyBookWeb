@@ -47,8 +47,11 @@ jobs:
         run: docker build ./BulkyBookWeb --file ./BulkyBookWeb/Dockerfile --tag ${{ env.IMAGE_NAME }}:${{ env.new_tag }}
 
       # Step 6: Push the Docker image to Docker Hub
+      # Step 6: Push the Docker image to Docker Hub
       - name: Push Docker Image
+        if: startsWith(github.event.head_commit.message, 'Feat:') || startsWith(github.event.head_commit.message, 'Fix:')
         run: docker push ${{ env.IMAGE_NAME }}:${{ env.new_tag }}
+
 
       # Step 7: Create a new Git tag and push it
       - name: Create and push Git tag
