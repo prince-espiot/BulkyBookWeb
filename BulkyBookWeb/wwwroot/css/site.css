@@ -182,29 +182,3 @@ p.lead {
             align-items: center;
         }
 
-.stunning-title {
-    font-family: 'Poppins', sans-serif; /* Use a stylish font */
-    font-size: 3rem;
-    color: #ffffff;
-    text-shadow: 0 0 5px #00f, 0 0 10px #00f, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff;
-    background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 1.5s infinite alternate;
-    text-align: center;
-    margin: 2rem auto;
-    padding: 0.5rem 1rem;
-    border: 2px solid #ffffff;
-    border-radius: 10px;
-    display: inline-block;
-}
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 10px #ff0080, 0 0 20px #ff8c00, 0 0 30px #40e0d0;
-    }
-
-    to {
-        text-shadow: 0 0 20px #40e0d0, 0 0 30px #ff8c00, 0 0 40px #ff0080;
-    }
-}
